@@ -14,3 +14,17 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/index', 'TimedayController@index')->name('index');
+
+//timeday Routes
+Route::group(['middleware'=> 'web'],function(){
+  Route::resource('timeday','\App\Http\Controllers\TimedayController');
+  Route::post('timeday/{id}/update','\App\Http\Controllers\TimedayController@update');
+  Route::get('timeday/{id}/delete','\App\Http\Controllers\TimedayController@destroy');
+  Route::get('timeday/{id}/deleteMsg','\App\Http\Controllers\TimedayController@DeleteMsg');
+});
+
+
