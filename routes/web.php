@@ -18,6 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/index', 'TimedayController@index')->name('index');
+Route::resource('home', 'HomeController');
 
 //timeday Routes
 Route::group(['middleware'=> 'web'],function(){

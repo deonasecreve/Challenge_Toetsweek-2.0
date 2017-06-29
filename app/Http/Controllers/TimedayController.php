@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Timeday;
 use Amranidev\Ajaxis\Ajaxis;
 use URL;
+use App\User;
 
 /**
  * Class TimedayController.
@@ -24,9 +26,13 @@ class TimedayController extends Controller
      */
     public function index()
     {
+        if (Auth::User()->HasRole('Hair_Stylist')){ 
         $title = 'Index - timeday';
         $timedays = Timeday::paginate(6);
         return view('timeday.index',compact('timedays','title'));
+        } else{
+            return view('home');
+        }
     }
 
     /**
